@@ -1,8 +1,12 @@
 fun main(args: Array<String>) {
     val number = if(args.isNotEmpty()) args[0].toIntOrNull() else null
+    val input = if(args.size > 1) args[1] else ""
+
     println("$number is ${evenOrOdd(number)}.")
     println("$number! is ${factorial(number)}.")
     println("$number! is ${factorial2(number).toString()}.")
+    println("$input is reversed to ${reverseStr(input)}")
+    println("$input is ${if (isPalindrome(input)) "" else "not "}a palindrome")
 }
 
 fun evenOrOdd(num: Int?): String {
@@ -41,4 +45,13 @@ fun factorial2(num: Int?) : Long? {
             return result
         }
     }
+}
+
+fun reverseStr(input: String): String {
+    return input.reversed()
+}
+
+fun isPalindrome(str: String): Boolean {
+    val cleanStr = str.lowercase().replace(Regex("[^a-zA-Z0-9]"), "")
+    return cleanStr == reverseStr(cleanStr)
 }
